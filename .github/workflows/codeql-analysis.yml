@@ -1,6 +1,7 @@
 name: "CodeQL"
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "dev" ]
     # Can't use the paths-ignore with 'push' as this would cause missing analyses.
@@ -17,6 +18,7 @@ on:
 
 jobs:
   analyze:
+    if: startsWith(github.ref, 'refs/heads/upstream-')
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
